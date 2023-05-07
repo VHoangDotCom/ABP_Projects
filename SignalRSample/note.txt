@@ -1,0 +1,73 @@
+- Install SignalR AspNET
+- modify signalR.js
+- 
+
+1. Home frame (user and views count)
+- Crreate HubConnections.cs in Hubs
+- Create UserHub.cs in Hubs
+- Config in Program.cs
+- Create userCount.js in www/root/js
+- Create in index.cshtml
+
+2. Deathly Hallow Race ( check view in link )
+- SD.cs
+- DeathlyHallowRace.cshtml
+- deathlyHallows.js
+- Config in Program.cs
+- DeathlyHallowHub.cs
+- HomeController.cs
+
+3. Harry Potter Houses
+- houseGroup.js
+- HouseGroupHub.cs
+- Config in Program.cs
+- HomeController.cs
+
+4. Order - Order List
+- order.js
+- OrderHub.cs
+- Models/Order.cs
+- Order.cshtml
+- OrderList.cshtml
+- HomeController.cs
+- ApplicationDBContext.cs
+- Add-Migration
+- Config in Program.cs
+
+5. Notification
+- notification.js
+- NotificationHub.cs
+- HomeController.cs
+- Notification.cshtml
+- Config in Program.cs
+
+6. Basic Chat
+- basicchat.js
+- BasicChat.cshtml
+- BasicChatHub.cs
+- Config in Program.cs
+
+7. Chat
+- chat.js
+- ChatHub.cs
+- ViewModels/ChatVM.cs
+- ChatRoom.cs
+- Chat.cshtml
+- _PrivateChat.cshtml
+- _PublicChat.cshtml
+- _PublicChatlight.cshtml
+- Config in Program.cs
+- ChatRoomsController.cs
+
+8. Advance Chat
+- advanceChat.js
+- advaceChatHelper.js
+- Config in Program.cs
+- HomeController.cs
+- ChatHub.cs
+- ViewModels/ChatVM.cs
+- ChatRoom.cs
+- AdvancedChat.cshtml
+
+
+
