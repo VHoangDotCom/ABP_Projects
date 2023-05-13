@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\BackgroundJob_AspNET.props" />
+</Project>

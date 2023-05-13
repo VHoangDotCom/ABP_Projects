@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Dhue/2Fe4IRqCUID7ktSC4K/Zrx3zjo1MkxcGCw3LKs=",
+  "Source": "BackgroundJob_AspNET",
+  "BasePath": "_content/BackgroundJob_AspNET",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

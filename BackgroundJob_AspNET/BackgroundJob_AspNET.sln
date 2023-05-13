@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundJob_AspNET", "BackgroundJob_AspNET\BackgroundJob_AspNET.csproj", "{9A7A979C-8AEA-4418-B924-FF035293589A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzNET_AspNET", "QuartzNET_AspNET\QuartzNET_AspNET.csproj", "{A7F36F27-0885-427A-91F0-3D780F0382FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A7A979C-8AEA-4418-B924-FF035293589A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7A979C-8AEA-4418-B924-FF035293589A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7A979C-8AEA-4418-B924-FF035293589A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7A979C-8AEA-4418-B924-FF035293589A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7F36F27-0885-427A-91F0-3D780F0382FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7F36F27-0885-427A-91F0-3D780F0382FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7F36F27-0885-427A-91F0-3D780F0382FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7F36F27-0885-427A-91F0-3D780F0382FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53D7C23A-9309-4E08-BC8C-4A0AC0F16E3C}
+	EndGlobalSection
+EndGlobal
