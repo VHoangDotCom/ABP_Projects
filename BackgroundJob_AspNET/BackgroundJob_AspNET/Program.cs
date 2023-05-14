@@ -52,18 +52,6 @@ var builder = Host.CreateDefaultBuilder()
         {
             q.UseMicrosoftDependencyInjectionJobFactory();
 
-            //Configure the job inside the builder - Run job config crontab in Program.cs
-            // Create a "key" for the job
-            /* var jobKey = new JobKey("HelloWorldJob");
-
-             // Register the job with the DI container
-             q.AddJob<HelloWorldJob>(opts => opts.WithIdentity(jobKey));
-
-             // Create a trigger for the job
-             q.AddTrigger(opts => opts
-                 .ForJob(jobKey) // link to the HelloWorldJob
-                 .WithIdentity("HelloWorldJob-trigger") // give the trigger a unique name
-                 .WithCronSchedule("0/5 * * * * ?")); // run every 5 seconds*/
 
             // Register the job, loading the schedule from configuration
             //Run job config crontab in app.setting - recommend
@@ -86,27 +74,6 @@ var builder = Host.CreateDefaultBuilder()
 
 await builder.RunAsync();
 
-//Configure the job outside the builder
-/*var schedulerFactory = builder.Services.GetRequiredService<ISchedulerFactory>();
-var scheduler = await schedulerFactory.GetScheduler();
-
-// define the job and tie it to our HelloJob class
-var job = JobBuilder.Create<HelloJob>()
-    .WithIdentity("myJob", "group1")
-    .Build();
-
-// Trigger the job to run now, and then every 40 seconds
-var trigger = TriggerBuilder.Create()
-    .WithIdentity("myTrigger", "group1")
-    .StartNow()
-    .WithSimpleSchedule(x => x
-        .WithIntervalInSeconds(10)
-        .RepeatForever())
-    .Build();
-
-await scheduler.ScheduleJob(job, trigger);
-*/
-// will block until the last running job completes
 
 
 

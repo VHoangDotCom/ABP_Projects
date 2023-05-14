@@ -1,0 +1,20 @@
+1. Create AspNET Core API
+
+2. Install packages:
+- dotnet add package Hangfire
+- dotnet add package Hangfire.Core
+- dotnet add package Hangfire.Storage.SQLite
+- Hangfire.Dashboard.Basic.Authentication
+
+3. Add Connection string in DB (appsetting.json):
+ "ConnectionStrings": {
+    "DefaultConnection": "fireapp.db"
+  }
+
+4. Configure in Program.cs
+
+5. Create Models : Driver.cs
+
+6. Create DriverController.cs
+
+7. Create Services
