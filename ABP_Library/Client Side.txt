@@ -1,0 +1,31 @@
+# CRUD Service
+
+1. Create Book module in Angular project
+	ng generate module book --module app --routing --route books
+
+2. Update module.ts file
+@NgModule({
+  declarations [BookComponent],
+  imports [
+    BookRoutingModule,
+    SharedModule
+  ]
+})
+
+3. Update app-routing.module.ts file
+
+4. After Updating files + run host application, generate proxy
+	abp generate-proxy -t ng
+= This command will create the following files under the srcappproxybooks folder
+
+5. Create Author module in Angular project
+	ng generate module author --module app --routing --route authors
+
+6. Update content in those file
+
+7. After Updating files + run host application, generate proxy
+	abp generate-proxy -t ng
+
+
+# Authorization
+1. Update srcappbookbook-routing.module.ts ( Add AuthGuard)

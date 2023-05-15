@@ -1,0 +1,169 @@
+Getting Started: https://docs.abp.io/en/abp/latest/Getting-Started-Setup-Environment?UI=NG&DB=EF&Tiered=No
+
+# CRUD Service
+
+## Create Entity
+1. Create Book entity in Books folder in *.Domain project
+
+2. Create BookType (enum) in Books folder in *.Domain.Shared project
+
+3. Add the Book entity to DbContext
+	public DbSet<Book> Books { get; set; }
+
+4. Map the Book entity to a Database Table
+	/* Configure your own tables/entities inside here */
+
+        builder.Entity<Book>(b =>
+        {
+            b.ToTable(BookStoreConsts.DbTablePrefix + "Books",
+                BookStoreConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
+
+5. Add Database Migration
+	dotnet ef migrations add Created_Book_Entity
+- Incase using Visual Studio
+	Add-Migration Created_Book_Entity
+	Update-Database
+( ensure that *.EntityFrameworkCore is the startup project and *.EntityFrameworkCore is the Default Project in PMC )
+
+6. Add Sample Seed Data
+Create a class deriving from the IDataSeedContributor in the *.Domain project (BookStoreDataSeederContributor)
+=> Update DB: Run the *.DbMigrator application to update the database
+
+## Create Application Service
+7. Create BookDto in Books folder in *.Application.Contracts project
+
+8. Define mapping Book & BookDto in BookStoreApplicationAutoMapperProfile class in *.Application
+	CreateMap<Book, BookDto>();
+
+9. Create CreateUpdateBookDto in Books folder in *.Application.Contracts project
+
+10. Define the mapping from the CreateUpdateBookDto object to the Book entity
+	CreateMap<CreateUpdateBookDto, Book>();
+
+11.Create an IBookAppService interface in the Books folder of the *.Application.Contracts project
+=>  Define an interface for the application service. 
+
+12. Create BookAppService in the Books folder of the *.Application project
+=> Service implement the IBookAppService interface
+
+13. Localization texts are located under the Localization/BookStore folder of the *.Domain.Shared 
+	Open the en.json (the English translations) file and change the content
+
+14. Create Author entity
+https://docs.abp.io/en/abp/latest/Tutorials/Part-6?UI=NG&DB=EF
+
+15. Create an Authors folder (namespace) in the *.Domain project and add an Author class inside it
+
+16. AuthorConsts is a simple class that is located under the Authors folder of the *.Domain.Shared project:
+=> Inherited from FullAuditedAggregateRoot<Guid> which makes the entity soft delete (that means when you delete it, 
+it is not deleted in the database, but just marked as deleted) with all the auditing properties.
+
+17. Create an AuthorManager class in the Authors folder (namespace) of the *.Domain project
+
+18. Define AuthorAlreadyExistsException, defined in the *.Domain project (in the Authors folder)
+
+19. Open the BookStoreDomainErrorCodes in the *.Domain.Shared project and update
+
+20. Open the Localization/BookStore/en.json inside the *.Domain.Shared project and add
+	"BookStore:00001": "There is already an author with the same name: {name}"
+
+21. Create IAuthorRepository interface in the Authors folder of the *.Domain project
+
+22. Open the BookStoreDbContext in the *.EntityFrameworkCore project and add
+	public DbSet<Author> Authors { get; set; }
+
+23. Then locate to the OnModelCreating method in BookStoreDbContext class in the same project
+
+24. Create a new Database Migration
+	Add-Migration Created_Author_Entity
+	Update-Database
+
+25. Implementing the IAuthorRepository
+=> Create a new class, named EfCoreAuthorRepository inside the *.EntityFrameworkCore project (in the Authors folder)
+
+26. Create a new interface, named IAuthorAppService, in the Authors folder of the *.Application.Contracts project
+
+27. Create AuthorDto
+
+28. GetAuthorListDto/CreateAuthorDto
+
+29. Create a new class, named AuthorAppService in the Authors folder of the *.Application project
+
+30. Open the BookStorePermissions class inside the *.Application.Contracts project (Permissions folder) and update
+
+31. Open the BookStorePermissionDefinitionProvider in the same project and update
+
+32. Update Localization/BookStore/en.json inside the *.Domain.Shared project
+
+33. Open the BookStoreApplicationAutoMapperProfile class inside the *.Application project and add 
+	CreateMap<Author, AuthorDto>();
+
+34. 
+
+
+#Authorization
+1. Permission Names
+Open the BookStorePermissions class inside the *.Application.Contracts project (in the Permissions folder) 
+=> Update content:
+	 public static class Books
+    {
+        public const string Default = GroupName + ".Books";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
+    }
+
+2. Permission Definitions
+Open the BookStorePermissionDefinitionProvider class inside the *.Application.Contracts project (in the Permissions folder)
+=> Update content
+	
+3. Edit localization file (en.json under the Localization/BookStore folder of the *.Domain.Shared project)
+
+4. Udate BookAppService class in Books folder in *.Application project
+
+
+# Update Relation
+=> Add relation Author - Book : 1 - n
+
+1. Open the Books/Book.cs in the *.Domain project and add the following property to the Book entity
+	public Guid AuthorId { get; set; }
+
+2. Prefer to delete the database ( run Drop-Database in the Package Manager Console)
+
+3. Update OnModelCreating method in the BookStoreDbContext class that under the EntityFrameworkCore folder of the .EntityFrameworkCore project
+
+4. Add New EF Core Migration
+- If not using Visual : dotnet ef migrations add Added_AuthorId_To_Book
+- If using Visual: 
+	Add-Migration Added_AuthorId_To_Book -c BookStoreDbContext
+	Update-Database -Context BookStoreDbContext
+( ensure that *.EntityFrameworkCore is the startup project and *.EntityFrameworkCore is the Default Project in PMC )
+
+5. Change the Data Seeder
+=> Open the BookStoreDataSeederContributor in the *.Domain project and update
+
+6. Run the .DbMigrator console application to migrate the database schema and seed the initial data.
+
+7. Open the BookDto class in the Books folder of the *.Application.Contracts project and add
+	public Guid AuthorId { get; set; }
+	public string AuthorName { get; set; }
+
+8. CreateUpdateBookDto
+
+9. Create a new class, AuthorLookupDto, inside the Books folder of the *.Application.Contracts project
+
+10. Open the IBookAppService interface in the Books folder of the *.Application.Contracts project and add a new method, named GetAuthorLookupAsync
+
+11. Open the BookAppService class in the Books folder of the *.Application project and update
+
+12. Add a new mapping definition inside the BookStoreApplicationAutoMapperProfile.cs file of the *.Application project
+
+13. Since the HTTP APIs have been changed, you need to update Angular client side service proxies. 
+Before running generate-proxy command, your host must be up and running
+	abp generate-proxy -t ng
+
+
+
