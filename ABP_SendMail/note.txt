@@ -1,0 +1,11 @@
+Email sending uses the setting system to define settings and get the values of these settings on the runtime. Volo.Abp.Emailing.EmailSettingNames defines constants for the setting names, just listed below:
+
+Abp.Mailing.DefaultFromAddress: Used as the sender's email address when you don't specify a sender when sending emails (just like in the example above).
+Abp.Mailing.DefaultFromDisplayName: Used as the sender's display name when you don't specify a sender when sending emails (just like in the example above).
+Abp.Mailing.Smtp.Host: The IP/Domain of the SMTP server (default: 127.0.0.1).
+Abp.Mailing.Smtp.Port: The Port of the SMTP server (default: 25).
+Abp.Mailing.Smtp.UserName: Username, if the SMTP server requires authentication.
+Abp.Mailing.Smtp.Password: Password, if the SMTP server requires authentication. **This value is encrypted **(see the section below).
+Abp.Mailing.Smtp.Domain: Domain for the username, if the SMTP server requires authentication.
+Abp.Mailing.Smtp.EnableSsl: A value that indicates if the SMTP server uses SSL or not ("true" or "false". Default: "false").
+Abp.Mailing.Smtp.UseDefaultCredentials: If true, uses default credentials instead of the provided username and password ("true" or "false". Default: "true").
